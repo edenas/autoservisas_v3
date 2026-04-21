@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}Automobiliai{% endblock %}
+{% block content %}
+{% for car in cars %}
+<p>{{ car }} ({{ car.license_plate }})</p>
+{% endfor %}
+{% endblock %}
