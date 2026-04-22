@@ -5,23 +5,28 @@
 <p>Data: {{ order.date }}</p>
 <p>Klientas: {{ order.client }}</p>
 <p>Busena: {{ order.get_status_display }}</p>
-
-  <table class="table table-bordered">
+<table class="table table-bordered">
     <thead>
-      <tr>
-        <th>Paslauga</th>
-        <th>Kaina</th>
-        <th>Kiekis</th>
-      </tr>
+        <tr>
+            <th>Paslauga</th>
+            <th>Kaina</th>
+            <th>Kiekis</th>
+            <th>Suma</th>
+        </tr>
     </thead>
     <tbody>
-    {% for line in order.lines.all %}
-      <tr>
-        <td>{{ line.service.name }}</td>
-        <td>{{ line.service.price }}</td>
-        <td>{{ line.quantity }}</td>
-      </tr>
-    {% endfor %}
+        {% for line in order.lines.all %}
+            <tr>
+                <td>{{ line.service.name }}</td>
+                <td>{{ line.service.price }}</td>
+                <td>{{ line.quantity }}</td>
+                <th>{{ line.line_sum }}</th>
+            </tr>
+        {% endfor %}
+        <tr>
+            <th colspan="3">BENDRA SUMA:</th>
+            <th>{{ order.total }}</th>
+        </tr>
     </tbody>
-  </table>
+</table>
 {% endblock %}

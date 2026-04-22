@@ -34,6 +34,13 @@ class Order(models.Model):
 
     status = models.CharField(choices=STATUS_CHOICES, default='a')
 
+    def total(self):
+        lines = self.lines.all()
+        total = 0
+        for line in lines:
+            total += line.service.price * line.quantity
+        return total
+
     def __str__(self):
         return f"{self.car} {self.date}"
 
@@ -41,6 +48,9 @@ class OrderLine(models.Model):
     order = models.ForeignKey(to="Order", on_delete=models.CASCADE, related_name='lines')
     service = models.ForeignKey(to="Service", on_delete=models.SET_NULL, null=True, blank=True)
     quantity = models.IntegerField(default=1)
+
+    def line_sum(self):
+        return self.service.price * self.quantity
 
     def __str__(self):
         return f"{self.service} - {self.quantity}"
