@@ -5,4 +5,8 @@
 <p>Data: {{ order.date }}</p>
 <p>Klientas: {{ order.client }}</p>
 <p>Busena: {{ order.get_status_display }}</p>
+<hr>
+{% for line in order.lines.all %}
+<p>{{ line }}</p>
+{% endfor %}
 {% endblock %}
