@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Car, Service, Order, OrderLine
+from django.views import generic
 # Create your views here.
 
 def index(request):
@@ -21,3 +22,8 @@ def car(request, pk):
         'car': Car.objects.get(pk=pk),
     }
     return render(request, template_name="car.html", context=context)
+
+class OrderListView(generic.ListView):
+    model = Order
+    template_name = "orders.html"
+    context_object_name = "orders"
