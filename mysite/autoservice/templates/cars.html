@@ -2,6 +2,6 @@
 {% block title %}Automobiliai{% endblock %}
 {% block content %}
 {% for car in cars %}
-<p>{{ car }} ({{ car.license_plate }})</p>
+<p><a href="{% url 'car' car.pk %}">{{ car }} ({{ car.license_plate }})</a></p>
 {% endfor %}
 {% endblock %}
