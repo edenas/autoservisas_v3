@@ -2,6 +2,6 @@
 {% block title %}Uzsakymai{% endblock %}
 {% block content %}
 {% for order in orders %}
-<p><a>{{ order }}</a></p>
+<p><a href="{{ order.pk }}">{{ order }}</a></p>
 {% endfor %}
 {% endblock %}
