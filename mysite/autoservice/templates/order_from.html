@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Uzsakymo kurimas/redagavimas{% endblock %}
+{% block content %}
+<h1>Uzsakymo kurimas/redagavimas</h1>
+<form method="post">
+    {% csrf_token %}
+    {% load crispy_forms_tags %}
+    {{ form | crispy }}
+    <button type="submit" class="btn btn-primary">Issaugoti</button>
+</form>
+{% endblock %}
