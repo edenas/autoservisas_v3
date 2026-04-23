@@ -3,7 +3,7 @@
 {% block content %}
 <p>Automobilis: {{ order.car }}</p>
 <p>Data: {{ order.date }}</p>
-<p>Terminas: {{ order.deadline }}</p>
+<p class="{% if order.is_overdue %}text-danger{% endif %}">Terminas: {{ order.deadline }}</p>
 <p>Klientas: {{ order.client }}</p>
 <p>Busena: {{ order.get_status_display }}</p>
 <table class="table table-bordered">
@@ -14,7 +14,7 @@
             <th>Kiekis</th>
             <th>Suma</th>
         </tr>
-    </thead> 
+    </thead>
     <tbody>
         {% for line in order.lines.all %}
             <tr>
