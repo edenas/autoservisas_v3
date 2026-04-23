@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 
@@ -34,6 +35,9 @@ class Order(models.Model):
     ]
 
     status = models.CharField(choices=STATUS_CHOICES, default='a')
+
+    def is_overdue(self):
+        return self.deadline and timezone.now() > self.deadline
 
     def total(self):
         lines = self.lines.all()
