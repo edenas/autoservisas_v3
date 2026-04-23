@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
+from tinymce.models import HTMLField
 
 # Create your models here.
 
@@ -10,6 +11,7 @@ class Car(models.Model):
     license_plate = models.CharField()
     vin_code = models.CharField()
     client_name = models.CharField()
+    description = HTMLField(default="")
 
     def __str__(self):
         return f"{self.make} {self.model}"
