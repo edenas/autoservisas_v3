@@ -24,6 +24,7 @@ class Order(models.Model):
     date = models.DateField(auto_now_add=True)
     car = models.ForeignKey(to="Car", on_delete=models.CASCADE)
     client = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    deadline = models.DateTimeField(null=True, blank=True)
 
     STATUS_CHOICES = [
         ('a', 'Administered'),
