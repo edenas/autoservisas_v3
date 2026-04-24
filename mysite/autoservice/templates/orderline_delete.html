@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Paslaugos trynimas{% endblock %}
+{% block content %}
+<p>Ar tikrai norite istrinti paslauga"{{ orderline }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button class="btn btn-primary" type="submit">Taip</button>
+    <a class="btn btn-secondary" href="{% url 'order' orderline.order.pk %}">Ne</a>
+</form>
+{% endblock %}

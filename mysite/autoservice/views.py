@@ -79,3 +79,41 @@ class OrderDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteVie
 
     def test_func(self):
         return self.get_object().client == self.request.user
+
+class OrderLineCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
+    model = OrderLine
+    template_name = "orderline_form.html"
+    fields = ['service', 'quantity']
+
+    def get_success_url(self):
+        return reverse("order", kwargs={"pk": self.kwargs['pk']})
+
+    def test_func(self):
+        return Order.objects.get(pk=self.kwargs['pk']).client == self.request.user
+
+    def form_valid(self, form):
+        form.instance.order = Order.objects.get(pk=self.kwargs['pk'])
+        form.save()
+        return super().form_valid(form)
+
+class OrderLineUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+    model = OrderLine
+    template_name = "orderline_form.html"
+    fields = ['service', 'quantity']
+
+    def get_success_url(self):
+        return reverse("order", kwargs={"pk": self.object.order.pk})
+
+    def test_func(self):
+        return self.get_object().order.client == self.request.user
+
+class OrderLineDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = OrderLine
+    template_name = "orderline_delete.html"
+    context_object_name = "orderline"
+
+    def get_success_url(self):
+        return reverse("order", kwargs={"pk": self.object.order.pk})
+
+    def test_func(self):
+        return self.get_object().order.client == self.request.user
