@@ -5,8 +5,9 @@ from django.urls import reverse_lazy
 
 from .models import Car, Service, Order, OrderLine
 from django.views import generic
-from .forms import OrderCreateUpdateForm
+from .forms import OrderCreateUpdateForm, UserChangeForm
 from django.contrib.auth.forms import UserCreationForm
+
 
 # Create your views here.
 
@@ -124,3 +125,12 @@ class SignUpView(generic.CreateView):
     form_class = UserCreationForm
     template_name = "signup.html"
     success_url = reverse_lazy("login")
+
+class ProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
+    form_class = UserChangeForm
+    template_name = "profile.html"
+    success_url = reverse_lazy('profile')
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
