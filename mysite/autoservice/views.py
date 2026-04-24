@@ -6,6 +6,8 @@ from django.urls import reverse_lazy
 from .models import Car, Service, Order, OrderLine
 from django.views import generic
 from .forms import OrderCreateUpdateForm
+from django.contrib.auth.forms import UserCreationForm
+
 # Create your views here.
 
 def index(request):
@@ -117,3 +119,8 @@ class OrderLineDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.Delet
 
     def test_func(self):
         return self.get_object().order.client == self.request.user
+
+class SignUpView(generic.CreateView):
+    form_class = UserCreationForm
+    template_name = "signup.html"
+    success_url = reverse_lazy("login")

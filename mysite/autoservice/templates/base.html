@@ -49,9 +49,11 @@
                     <button class="nav-link" type="submit">Atsijungti</button>
                 </form>
             </li>
-          {% else %}
-            <li class="nav-item"><a class="nav-link" href="{% url 'login'%}">Prisijungti</a></li>
-          {% endif %}
+
+            {% else %}
+              <li class="nav-item"><a class="nav-link" href="{% url 'login'%}">Prisijungti</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'signup'%}">Registracija</a></li>
+            {% endif %}
 
         </ul>
         </div>
