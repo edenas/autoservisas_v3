@@ -12,6 +12,7 @@ class Car(models.Model):
     vin_code = models.CharField()
     client_name = models.CharField()
     description = HTMLField(default="")
+    photo = models.ImageField(upload_to='cars', null=True, blank=True)
 
     def __str__(self):
         return f"{self.make} {self.model}"
