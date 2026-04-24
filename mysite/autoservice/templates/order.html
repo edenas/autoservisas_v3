@@ -7,9 +7,12 @@
 <p>Klientas: {{ order.client }}</p>
 <p>Busena: {{ order.get_status_display }}</p>
 
+{% if order.client == user %}
 <div class="mb-4">
     <a class="btn btn-warning" href="{% url 'orders_update' order.pk %}">Redaguoti</a>
+    <a class="btn btn-danger" href="{% url 'orders_delete' order.pk %}">Istrinti</a>
 </div>
+{% endif %}
 
 <table class="table table-bordered">
     <thead>

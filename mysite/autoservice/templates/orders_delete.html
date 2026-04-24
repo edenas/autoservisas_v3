@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Uzsakymo trynimas{% endblock %}
+{% block content %}
+<p>Ar tikrai norite istrinti uzsakyma "{{ order }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button class="btn btn-primary" type="submit">Taip</button>
+    <a class="btn btn-secondary" href="{% url 'order' order.pk %}">Ne</a>
+</form>
+{% endblock %}
