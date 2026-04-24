@@ -6,6 +6,11 @@
 <p class="{% if order.is_overdue %}text-danger{% endif %}">Terminas: {{ order.deadline }}</p>
 <p>Klientas: {{ order.client }}</p>
 <p>Busena: {{ order.get_status_display }}</p>
+
+<div class="mb-4">
+    <a class="btn btn-warning" href="{% url 'orders_update' order.pk %}">Redaguoti</a>
+</div>
+
 <table class="table table-bordered">
     <thead>
         <tr>
